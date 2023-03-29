@@ -26,7 +26,6 @@ const Card = ({ product }: CardProps) => {
   const handleAddProduct = (product: ProductType) => {
     if(amount == 0) setAmount(1)
     addProduct({...product, amount: amount})
-    toast.success("Produto adicionado")
   }
 
   return (

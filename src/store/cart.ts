@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 import { ProductType } from '../config/types'
+import Laranja from '../assets/laranja.webp'
+import { toast } from 'react-toastify'
 
 type cartState = {
   products: ProductType[],
@@ -14,7 +16,7 @@ export const useCartStore = create<cartState>((set) => ({
       name: "Laranja",
       category: "Fruita",
       description: "p/kg",
-      img_url: "",
+      img_url: Laranja,
       price: 150,
       amount: 5,
       total: 0,
@@ -26,7 +28,7 @@ export const useCartStore = create<cartState>((set) => ({
       name: "Tomate",
       category: "Vegetal",
       description: "p/kg",
-      img_url: "",
+      img_url: Laranja,
       price: 150,
       amount: 4,
       total: 0,
@@ -38,7 +40,7 @@ export const useCartStore = create<cartState>((set) => ({
       name: "Couve",
       category: "Verdura",
       description: "p/kg",
-      img_url: "",
+      img_url: Laranja,
       price: 150,
       amount: 1,
       total: 0,
@@ -48,9 +50,21 @@ export const useCartStore = create<cartState>((set) => ({
   ],
   
   addProduct: (product) => {
-    set(state => ({
-      products: [...state.products, product]
-    }))
+    set((state) => {
+      const item = state.products.find((p) => p.id == product.id)
+
+      if(!item){
+        toast.success("Produto adicionado")
+        return ({
+          products: [...state.products, {...product, amount: product.amount == 0 ? 1 : product.amount}]
+        })
+      }
+
+      toast.info("Produto já anteriormente adicionado")
+      return ({
+        products: [...state.products]
+      })
+    })
   },
 
   removeProduct: (product) => {

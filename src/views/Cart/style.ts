@@ -5,7 +5,9 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 500px;
+  height: fit-content;
+  min-height: 500px;
+  padding: 5rem;
 
   h1{
     opacity: 0.7;
@@ -13,12 +15,11 @@ export const Container = styled.div`
 `
 
 export const Card = styled.div`
-  border: 1px solid blue;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1200px;
+  width: 1300px;
   background-color: #fff;
   border-radius: .5em;
   box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.2);
@@ -53,11 +54,36 @@ export const Card = styled.div`
   }
 `
 
-export const Table = styled.div`
+export const Table = styled.table`
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-around;
 
+  img{
+    width: 150px;
+  }
+
+  tbody{
+    width: 100%;
+
+    .header{
+      width: 100%;
+      gap: 2rem;
+      display: flex;
+      justify-content: space-between;
+      border: none;
+      margin: 0;
+
+      td{
+        font-size: 1.5rem;
+      }
+    }
+
+    
+  }
 `
+
 export const Balance = styled.div`
   border-top: 2px solid gray;
   width: 100%;
