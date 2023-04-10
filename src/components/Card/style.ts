@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Card = styled.div`
   //box-shadow: ;
-  padding: rem;
+  padding: .5rem;
   display: flex;
   flex-direction: column;
   width: 18rem;
@@ -62,7 +62,7 @@ export const Actions = styled.div`
     button{
       width: 30px;
       border: none;
-      padding: .5rem;
+      padding: .2rem;
       background-color: #007000;
       border-radius: .2rem;
       color: #fff;
@@ -111,7 +111,7 @@ export const Actions = styled.div`
       width: 100%;
       border: none;
       background-color: #007000;
-      padding: 1rem;
+      padding: .5rem;
       border-radius: .2rem;
       color: #fff;
       font-weight: 600;

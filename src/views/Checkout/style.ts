@@ -75,17 +75,72 @@ export const Container = styled.div`
   }
 `
 
-export const Field = styled.div`
-  display: flex;
-  flex-direction: row;
+export const Section = styled.div`
   width: 100%;
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem;
+  grid-column: 1/4;
 
-  div{
-    width: 50%;
+  h1{
+    width: 100%;
+    color: green;
+    font-size: 2.8rem;
+    margin-bottom: 4rem;
+    text-align: left;
+  }
 
-    h4{
-      opacity: 0.7;
+  > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  a{
+    text-decoration: none;
+  }
+`
+
+export const Card = styled.div`
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1300px;
+  background-color: #fff;
+  border-radius: .5em;
+  box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.2);
+  
+  a{
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+
+    img{
+      width: 100%;
+      height: 100%;
+      max-height: 300px;
+      display: flex;
+      align-items: center;
+    }
+
+    div{
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 1rem;
+
+      h3{
+        margin-bottom: .5rem;
+      }
     }
   }
 `

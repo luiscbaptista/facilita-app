@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 500px;
-  margin-bottom: 3rem;
+  margin: 5rem 0 3rem 0rem;
 
   > div {
     display: flex;

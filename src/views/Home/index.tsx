@@ -12,6 +12,10 @@ import { Link } from 'react-router-dom'
 const Home = () => {
   console.log("Main: Home")
   const { products } = useProductStore((state) => state)
+  const fruits = products.filter((product) => product.category === "Fruta")
+  const greens = products.filter((product) => product.category === "Verdura")
+  const vegetables = products.filter((product) => product.category === "Vegetal")
+
   
   return (
     <>
@@ -36,7 +40,9 @@ const Home = () => {
             <>
               <h1>Produtos recentes</h1><div>
                 {products.map((product) => (
-                  <Card key={product.id} product={product} />
+                  <Link to={product.id}>
+                    <Card key={product.id} product={product} />
+                  </Link>
                 ))}
               </div>
             </>
@@ -48,6 +54,48 @@ const Home = () => {
           )
           }
         </S.Section>
+
+        {fruits.length != 0 ? (
+            <S.Section>
+              <h1>Secção de Frutas</h1>
+              <div>
+                {fruits.map((product) => (
+                  <Link to={product.id} state={product}>
+                    <Card key={product.id} product={product} />
+                  </Link>
+                ))}
+              </div>
+            </S.Section>
+          ) : (<></>)
+        }
+
+        {greens.length != 0 ? (
+            <S.Section>
+              <h1>Secção de Verduras</h1>
+              <div>
+                {greens.map((product) => (
+                  <Link to={product.id} state={product}>
+                    <Card key={product.id} product={product} />
+                  </Link>
+                ))}
+              </div>
+            </S.Section>
+          ) : (<></>)
+        }
+        
+        {vegetables.length != 0 ? (
+            <S.Section>
+              <h1>Secção de Vegetais</h1>
+              <div>
+                {vegetables.map((product) => (
+                  <Link to={product.id} state={product}>
+                    <Card key={product.id} product={product} />
+                  </Link>
+                ))}
+              </div>
+            </S.Section>
+          ) : (<></>)
+        }
       </G.Container>
     </>
   )

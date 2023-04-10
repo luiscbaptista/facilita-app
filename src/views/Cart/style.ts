@@ -8,9 +8,11 @@ export const Container = styled.div`
   height: fit-content;
   min-height: 500px;
   padding: 5rem;
+  margin: 3rem 0 1.5rem 0rem;
 
   h1{
     opacity: 0.7;
+    margin: 5rem;
   }
 `
 
@@ -73,10 +75,14 @@ export const Table = styled.table`
       display: flex;
       justify-content: space-between;
       border: none;
-      margin: 0;
+      margin: 1rem 0;
 
       td{
         font-size: 1.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
       }
     }
 
@@ -105,7 +111,7 @@ export const Balance = styled.div`
       opacity: 0.9;
     }
 
-    button{
+    .active{
       padding: .8rem;
       width: 12rem;
       border-radius: .4rem;
@@ -118,6 +124,22 @@ export const Balance = styled.div`
       :hover{
         cursor: pointer;
         background-color: #008000;
+      }
+    }
+
+    .disabled{
+      padding: .8rem;
+      width: 12rem;
+      border-radius: .4rem;
+      border: none;
+      box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.2);
+      background-color: #006000;
+      color: #fff;
+      font-size: 1rem;
+      opacity: 0.9;
+
+      :hover{
+        cursor: no-drop;
       }
     }
   }

@@ -19,7 +19,7 @@ export const useCartStore = create<cartState>((set) => ({
       img_url: Laranja,
       price: 150,
       amount: 5,
-      total: 0,
+      total: 750,
       inStock: 0,
       isAvailable: false
     },
@@ -31,7 +31,7 @@ export const useCartStore = create<cartState>((set) => ({
       img_url: Laranja,
       price: 150,
       amount: 4,
-      total: 0,
+      total: 600,
       inStock: 0,
       isAvailable: false
     },
@@ -43,7 +43,7 @@ export const useCartStore = create<cartState>((set) => ({
       img_url: Laranja,
       price: 150,
       amount: 1,
-      total: 0,
+      total: 150,
       inStock: 0,
       isAvailable: false
     },
@@ -56,7 +56,7 @@ export const useCartStore = create<cartState>((set) => ({
       if(!item){
         toast.success("Produto adicionado")
         return ({
-          products: [...state.products, {...product, amount: product.amount == 0 ? 1 : product.amount}]
+          products: [...state.products, {...product, amount: product.amount == 0 ? 1 : product.amount, total: product.amount * product.price}]
         })
       }
 
@@ -69,7 +69,7 @@ export const useCartStore = create<cartState>((set) => ({
 
   removeProduct: (product) => {
     set(state => ({
-        products: state.products.filter(item => item.id !== product.id)
+        products: state.products.filter(item => item !== product)
     }))
   },
   

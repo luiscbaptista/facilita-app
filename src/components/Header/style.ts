@@ -6,8 +6,12 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #ffff;
   gap: 2.5rem;
   box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.2);
+  position: fixed;
+  z-index: 1;
+  top: 0;
 
   a{
     text-decoration: none;

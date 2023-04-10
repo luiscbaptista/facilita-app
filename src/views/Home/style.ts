@@ -6,7 +6,6 @@ export const Section = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 4rem;
-  grid-column: 1/4;
 
   h1{
     width: 100%;
@@ -27,5 +26,6 @@ export const Section = styled.div`
 
   a{
     text-decoration: none;
+    color: #000000;
   }
 `

@@ -6,8 +6,8 @@ import Signup from './Signup'
 import Fruits from './Products/Fruits'
 import Greens from './Products/Greens'
 import Vegetables from './Products/Vegetables'
-import Payment from './Payment'
 import Cart from './Cart'
+import Checkout from './Checkout'
 
 const Routes = [
       {
@@ -51,8 +51,8 @@ const Routes = [
         private: false
       },
       {
-        path: "/payment",
-        element: <Payment />,
+        path: "/checkout",
+        element: <Checkout />,
         private: false
       },
       {

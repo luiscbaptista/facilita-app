@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { BsTrash } from 'react-icons/bs'
+import { number } from 'yup'
 import { ProductType } from '../../config/types'
 import { useCartStore } from '../../store/cart'
 import * as S from './style'
@@ -10,16 +11,32 @@ type CartItemProps = {
 
 const CartItem = ({product}: CartItemProps) => {
   const [amount, setAmount] = useState(product.amount)
+  const pricePerAmount = product.price
+  const [total, setTotal] = useState(product.total)
+  let price: number = pricePerAmount
   const { removeProduct } = useCartStore((state) => state)
 
   const inc = () => {
     setAmount(amount + 1)
+    price = total + pricePerAmount
+    setTotal(price)
+    product = {...product, amount: amount, total: price}
+    console.log(price, product.total)
   }
 
   const dec = () => {
     if(amount > 0){
       setAmount(amount-1)
     }
+    price = total - pricePerAmount
+    setTotal(price)
+    product = {...product, amount: amount, total: price}
+    console.log(price, product.total)
+  }
+
+  const handleRemove = () => {
+    removeProduct(product)
+    console.log(product)
   }
 
   return (
@@ -43,10 +60,10 @@ const CartItem = ({product}: CartItemProps) => {
         </button>
       </td>
       <td>
-        {product.price}
+        {total}
       </td>
       <td>
-        <button onClick={() => removeProduct(product)}>
+        <button onClick={() => handleRemove()}>
           <BsTrash />
         </button>
       </td>

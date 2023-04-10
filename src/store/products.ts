@@ -85,7 +85,5 @@ export const useProductStore = create<ProductState>((set) => ({
     method: 'get',
     url: '',
     responseType: ''
-  }).then((response) => response.data)*/,
-
-  
+  }).then((response) => response.data)*/,  
 }))

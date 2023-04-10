@@ -18,7 +18,7 @@ const Banner = ({ slideImages, input }: SlideProps) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 6500,
+    autoplaySpeed: 5500,
     pauseOnHover: true,
     arrows: false
   };

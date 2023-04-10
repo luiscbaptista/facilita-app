@@ -1,6 +1,5 @@
 import { ShoppingCart } from 'phosphor-react'
 import React, { useState } from 'react'
-import { toast } from 'react-toastify'
 import { ProductType } from '../../config/types'
 import { useCartStore } from '../../store/cart'
 import * as S from './style'
@@ -11,7 +10,7 @@ type CardProps = {
 
 const Card = ({ product }: CardProps) => {
   const { addProduct } = useCartStore((state) => state)
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(1)
 
   const inc = () => {
     setAmount(amount + 1)
@@ -24,8 +23,7 @@ const Card = ({ product }: CardProps) => {
   }
 
   const handleAddProduct = (product: ProductType) => {
-    if(amount == 0) setAmount(1)
-    addProduct({...product, amount: amount})
+    addProduct({...product, amount: amount, total: product.price * amount})
   }
 
   return (
