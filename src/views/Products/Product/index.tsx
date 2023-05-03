@@ -8,7 +8,7 @@ const Product = () => {
   return (
     <S.Container>
       <S.Card>
-
+        <div>Producto</div>
       </S.Card>
     </S.Container>
   )

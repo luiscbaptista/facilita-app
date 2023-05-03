@@ -8,6 +8,8 @@ import Greens from './Products/Greens'
 import Vegetables from './Products/Vegetables'
 import Cart from './Cart'
 import Checkout from './Checkout'
+import Others from './Products/Others'
+import Product from './Products/Product'
 
 const Routes = [
       {
@@ -51,6 +53,11 @@ const Routes = [
         private: false
       },
       {
+        path: "/products/others",
+        element: <Others />,
+        private: false
+      },
+      {
         path: "/checkout",
         element: <Checkout />,
         private: false
@@ -64,7 +71,12 @@ const Routes = [
         path: "/myaccount",
         element: "",
         private: false
-      }
+      },
+      {
+        path: "/product/:id",
+        element: <Product />,
+        private: false
+      },
 ]
 
 export const ViewRoutes = Routes

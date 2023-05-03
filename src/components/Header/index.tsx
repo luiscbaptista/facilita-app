@@ -39,6 +39,9 @@ const Header = () => {
                   <Link to='/products/greens'>
                     Verduras
                   </Link>
+                  <Link to='/products/others'>
+                    Outros
+                  </Link>
                 </div>
               </section>
             </li>

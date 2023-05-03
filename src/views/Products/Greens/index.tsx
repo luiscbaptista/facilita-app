@@ -6,6 +6,7 @@ import * as S from './style'
 import InfoCard from '../../../components/InfoCard'
 import Card from '../../../components/Card'
 import { useProductStore } from '../../../store/products'
+import { Link } from 'react-router-dom'
 
 
 const Greens = () => {
@@ -22,9 +23,14 @@ const Greens = () => {
     <>
       <Banner slideImages={GreensSlide} input={true}/>
       <G.Container>
-        <S.Section>
-          <InfoCard info={presentation}/>  
-        </S.Section>
+        {presentation ? 
+          (
+            <S.Section>
+              <InfoCard info={presentation}/>
+            </S.Section>
+          ) : 
+          (<></>)
+        }
         
         <S.Section>
         {greens.length != 0  ? 
@@ -33,7 +39,9 @@ const Greens = () => {
                 <h1>Produtos recentes</h1>
                 <div>
                   {greens.map((product) => (
-                    <Card key={product.id} product={product} />
+                    <Link to={product.id} state={product}>
+                      <Card key={product.id} product={product} />
+                    </Link>                 
                   ))}
                 </div>
               </>

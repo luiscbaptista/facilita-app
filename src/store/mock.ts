@@ -50,6 +50,14 @@ export const GreensSlide: ImageType[] = [
   }
 ]
 
+export const OthersSlide: ImageType[] = [
+  {
+    url: "",
+    title: "Diversos",
+    caption: "Slide 1"
+  }
+]
+
 export const AboutUsSlide: ImageType[] = [
   {
     url: "",

@@ -85,10 +85,12 @@ export const Section = styled.div`
 
   h1{
     width: 100%;
-    color: green;
+    color: #fff;
     font-size: 2.8rem;
     margin-bottom: 4rem;
     text-align: left;
+    padding: 1rem;
+    background-color: green;
   }
 
   > div{
@@ -106,7 +108,6 @@ export const Section = styled.div`
 `
 
 export const Card = styled.div`
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,33 +115,15 @@ export const Card = styled.div`
   background-color: #fff;
   border-radius: .5em;
   box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.2);
-  
-  a{
-    text-decoration: none;
+
+  form{
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2rem;
-
-    img{
+    
+    .titulo{
+      padding: 1rem;
+      background-color: green;
+      color: #fff;
       width: 100%;
-      height: 100%;
-      max-height: 300px;
-      display: flex;
-      align-items: center;
-    }
-
-    div{
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-bottom: 1rem;
-
-      h3{
-        margin-bottom: .5rem;
-      }
     }
   }
 `

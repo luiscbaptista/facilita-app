@@ -6,9 +6,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: fit-content;
-  min-height: 500px;
+  min-height: 1000px;
   padding: 5rem;
   margin: 3rem 0 1.5rem 0rem;
+  background: red;
 
   h1{
     opacity: 0.7;

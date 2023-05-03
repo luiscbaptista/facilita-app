@@ -2,12 +2,12 @@ import React from 'react'
 import Banner from '../../components/Banner'
 import * as G from '../../styles/global'
 import * as S from './style'
-import { categories } from '../../store/categories'
 import { HomeSlide } from '../../store/mock'
 import { useProductStore } from '../../store/products'
 import Card from '../../components/Card'
 import SimpleCard from '../../components/Simple Card'
 import { Link } from 'react-router-dom'
+import { categories } from '../../store/categories'
 
 const Home = () => {
   console.log("Main: Home")
@@ -15,7 +15,13 @@ const Home = () => {
   const fruits = products.filter((product) => product.category === "Fruta")
   const greens = products.filter((product) => product.category === "Verdura")
   const vegetables = products.filter((product) => product.category === "Vegetal")
+  const others = products.filter((product) => product.category === "Outro")
 
+  /*const products = getProducts()
+  const fruits = getFruits()
+  const greens = getGreens()
+  const vegetables = getVegetables
+  const others = getOtherProducts()*/
   
   return (
     <>
