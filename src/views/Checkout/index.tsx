@@ -9,7 +9,7 @@ import { useCartStore } from '../../store/cart'
 
 const Checkout = () => {
   const navigate = useNavigate()
-  const {cart} = useCartStore(state => state)
+  const {cart, setCart} = useCartStore(state => state)
   const [mode, setModeShow] = useState(true)
   const [balance, setBalance] = useState(0)
   const [metodo_envio, setMetodo] = useState('')
