@@ -39,7 +39,7 @@ const Fruits = () => {
                 <h1>Produtos recentes</h1>
                 <div>
                   {fruits.map((product) => (
-                    <Link to={product.id} state={product}>
+                    <Link to="#" state={product}>
                       <Card key={product.id} product={product} />
                     </Link>
                   ))}

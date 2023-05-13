@@ -10,10 +10,7 @@ import { Link } from 'react-router-dom'
 
 const Others = () => {
 
-  const presentation = {
-    img: "",
-    description: ""
-  }
+  const presentation = null
 
   const { products } = useProductStore((state) => state)
   const Others = products.filter((product) => product.category == 'Fruta')
@@ -39,7 +36,7 @@ const Others = () => {
                 <h1>Produtos recentes</h1>
                 <div>
                   {Others.map((product) => (
-                    <Link to={product.id} state={product}>
+                    <Link to="#" state={product}>
                       <Card key={product.id} product={product} />
                     </Link>
                   ))}

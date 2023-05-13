@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as S from './style'
+import logo from '../../assets/Logo.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -55,7 +56,8 @@ const Signup = () => {
   return (
     <S.Container>
       <div>
-        <div>
+        <div className='logo'>
+          <img src={logo} alt="" />
           <h2>Cadastre-se</h2>
         </div>
         <form onSubmit={formik.handleSubmit}>

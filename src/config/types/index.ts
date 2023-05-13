@@ -10,3 +10,8 @@ export type ProductType = {
   inStock: number,
   isAvailable: boolean
 }
+
+export type UserType = {
+  email: string,
+  password: string
+}

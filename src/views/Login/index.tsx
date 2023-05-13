@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { userDataType } from '../../hooks/user'
+import api from '../../config/api'
 
 
 const Login = () => {
@@ -20,9 +21,19 @@ const Login = () => {
       email: yup.string().required("o e-mail é obrigatório"),
       senha: yup.string().required("senha é obrigatório"),
     }),
-    onSubmit: (data)=> {
-      console.log(data);
-      toast.success("Login feito com sucesso")
+    onSubmit: async (credentials) => {
+      try {
+        const {email, senha: password} = credentials
+        const { data } = await api.post("/auth/login", {email, password})
+        if(data) {
+          toast.success("Login feito com sucesso")
+        }else {
+          toast.warning("E-mail ou senha errada.")
+        }
+      } catch (error) {
+        console.log(error);
+        
+      }
     }
   })  
 

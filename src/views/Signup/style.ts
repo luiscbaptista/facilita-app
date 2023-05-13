@@ -14,6 +14,17 @@ export const Container = styled.div`
     align-items: center;
     gap: .5rem;
     width: fit-content;
+    
+    .logo{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      img{
+        width: 100px;
+      }
+    }
 
     h2 {
       font-size: 2rem;

@@ -12,16 +12,6 @@ const Card = ({ product }: CardProps) => {
   const { addProduct } = useCartStore((state) => state)
   const [amount, setAmount] = useState(1)
 
-  const inc = () => {
-    setAmount(amount + 1)
-  }
-
-  const dec = () => {
-    if(amount > 0){
-      setAmount(amount-1)
-    }
-  }
-
   const handleAddProduct = (product: ProductType) => {
     addProduct({...product, amount: amount, total: product.price * amount})
   }
@@ -43,15 +33,6 @@ const Card = ({ product }: CardProps) => {
           </p>
         </div>
         <S.Actions>
-          <div className='amount'>
-            <button onClick={() => dec()}>
-              -
-            </button>
-            <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
-            <button onClick={() => inc()}>
-              +
-            </button>
-          </div>
           <div className='add'>
             <button onClick={() => handleAddProduct(product)}>
               <span>Adicionar ao carrinho</span>
