@@ -35,6 +35,7 @@ export const Section = styled.div`
     p{
       text-align: justify;
       font-size: 1.5rem;
+      width: 700px;
     }
   }
 

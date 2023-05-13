@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
   const isAuth = false
-  const { products } = useCartStore((state) => state)
+  const { cart } = useCartStore((state) => state)
   
   return (
     <>
@@ -70,7 +70,7 @@ const Header = () => {
               <div>
                 <span>Meu Carrinho</span>
                 <small>
-                {products.length} items
+                {cart.length} items
                 </small>
               </div>
               <ShoppingCart

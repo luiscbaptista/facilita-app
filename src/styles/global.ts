@@ -8,7 +8,7 @@ export const Container = styled.div`
 `
 
 export const Main = styled.div`
-  min-height: 00px;
+  min-height: 500px;
 `
 
 export const TextInput = styled.input`

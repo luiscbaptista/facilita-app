@@ -46,7 +46,7 @@ const Home = () => {
             <>
               <h1>Produtos recentes</h1><div>
                 {products.map((product) => (
-                  <Link to={product.id}>
+                  <Link to="#">
                     <Card key={product.id} product={product} />
                   </Link>
                 ))}
@@ -66,7 +66,7 @@ const Home = () => {
               <h1>Secção de Frutas</h1>
               <div>
                 {fruits.map((product) => (
-                  <Link to={product.id} state={product}>
+                  <Link to="#" state={product}>
                     <Card key={product.id} product={product} />
                   </Link>
                 ))}
@@ -80,7 +80,7 @@ const Home = () => {
               <h1>Secção de Verduras</h1>
               <div>
                 {greens.map((product) => (
-                  <Link to={product.id} state={product}>
+                  <Link to="#" state={product}>
                     <Card key={product.id} product={product} />
                   </Link>
                 ))}

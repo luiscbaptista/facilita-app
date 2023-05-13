@@ -4,6 +4,7 @@ import * as S from './style'
 
 const Product = () => {
   const { state } = useLocation()
+  
 
   return (
     <S.Container>

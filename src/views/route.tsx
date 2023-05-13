@@ -10,6 +10,7 @@ import Cart from './Cart'
 import Checkout from './Checkout'
 import Others from './Products/Others'
 import Product from './Products/Product'
+import Confirmation from './Confirmation'
 
 const Routes = [
       {
@@ -75,6 +76,11 @@ const Routes = [
       {
         path: "/product/:id",
         element: <Product />,
+        private: false
+      },
+      {
+        path: "/checkout/confirmation",
+        element: <Confirmation />,
         private: false
       },
 ]

@@ -4,78 +4,47 @@ import Laranja from '../assets/laranja.webp'
 import { toast } from 'react-toastify'
 
 type cartState = {
-  products: ProductType[],
+  cart: ProductType[],
   addProduct: (product: ProductType) => void
   removeProduct: (product: ProductType) => void
+  setCart: (products: ProductType[]) => void
+  clearCart: () => void
 }
 
 export const useCartStore = create<cartState>((set) => ({
-  products: [
-    {
-      id: String(Math.random()),
-      name: "Laranja",
-      category: "Fruita",
-      description: "p/kg",
-      img_url: Laranja,
-      price: 150,
-      amount: 5,
-      total: 750,
-      inStock: 0,
-      isAvailable: false
-    },
-    {
-      id: String(Math.random()),
-      name: "Tomate",
-      category: "Vegetal",
-      description: "p/kg",
-      img_url: Laranja,
-      price: 150,
-      amount: 4,
-      total: 600,
-      inStock: 0,
-      isAvailable: false
-    },
-    {
-      id: String(Math.random()),
-      name: "Couve",
-      category: "Verdura",
-      description: "p/kg",
-      img_url: Laranja,
-      price: 150,
-      amount: 1,
-      total: 150,
-      inStock: 0,
-      isAvailable: false
-    },
-  ],
+  cart:[],
   
   addProduct: (product) => {
     set((state) => {
-      const item = state.products.find((p) => p.id == product.id)
+      const item = state.cart.find((p) => p.id == product.id)
 
       if(!item){
         toast.success("Produto adicionado")
         return ({
-          products: [...state.products, {...product, amount: product.amount == 0 ? 1 : product.amount, total: product.amount * product.price}]
+          cart: [...state.cart, {...product, amount: product.amount == 0 ? 1 : product.amount, total: product.amount * product.price}]
         })
       }
 
       toast.info("Produto já anteriormente adicionado")
       return ({
-        products: [...state.products]
+        cart: [...state.cart]
       })
     })
   },
 
   removeProduct: (product) => {
     set(state => ({
-        products: state.products.filter(item => item !== product)
+        cart: state.cart.filter(item => item !== product)
     }))
+  },
+
+  setCart: (products: ProductType[]) => {
+    set(state => ({cart: products}))
   },
   
   clearCart: () => {
     set(state => ({
-      products: []
+      cart: []
     }))
   }
 }))

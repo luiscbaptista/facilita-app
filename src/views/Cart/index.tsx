@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react'
+import { BsTrash } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-import CartItem from '../../components/CartItem'
+import { ProductType } from '../../config/types'
 import { useCartStore } from '../../store/cart'
 import * as S from './style'
 
 const Cart = () => {
-  const { products } = useCartStore((state) => state)
+  const { cart, setCart } = useCartStore((state) => state)
   const [balance, setBalance] = useState(0)
 
   const getBalance = () => {
-    let total = products.map((product) => product.total)
-    let balance = 0
-
-    for(var i = 0; i < total.length; i++){
-      balance += total[i]
-    }
-
-    setBalance(balance)
+    const sum = cart.reduce((total, product) => total + product.total, 0);
+    setBalance(sum);
   }
 
-  useEffect(() => getBalance(), [])
+  const removeProduct = (product: ProductType) => {
+    const products = cart.filter(item => item !== product)
+    setCart(products)
+    console.log(product)
+  }
 
+  useEffect(() => {
+    getBalance();
+  }, [cart]);
+  
   return (
     <S.Container>
       <S.Card>
-        {products.length != 0 ? 
+        {cart.length != 0 ? 
           (
             <>
               <S.Table>
@@ -40,9 +43,65 @@ const Cart = () => {
                     <td>Preço</td>
                     <td></td>
                   </tr>
-                  {products.map((product, index) => (
-                    <CartItem product={product}/>
-                  ))}
+                  {cart.map((product, index) => {
+                    const updateProductAmount = (amount: number) => {
+                      const updatedProduct = { ...product };
+                      updatedProduct.amount = amount;
+                      updatedProduct.total = amount * product.price;
+                      const updatedCart = [...cart];
+                      updatedCart[index] = updatedProduct;
+                      setCart(updatedCart); 
+                      getBalance();
+                    }
+
+                    return (
+                      <S.Item key={index}>
+                        <td>
+                          <img src={product.img_url} alt="" />
+                        </td>
+                        <td>
+                          {product.name}
+                        </td>
+                        <td>
+                          {product.category}
+                        </td>
+                        <td className='amount'>
+                          <button onClick={() => {
+                              let amount = product.amount;
+                              let price = product.amount * product.price;
+                              if (amount > 0) {
+                                amount -= 1;
+                                price -= product.price;
+                              }
+                              updateProductAmount(amount);
+                            }
+                          }>
+                            -
+                          </button>
+                          <input type="number" value={product.amount} onChange={(e) => updateProductAmount(Number(e.target.value))}/>
+                          <button onClick={() => {
+                            let amount = product.amount;
+                            let price = product.amount * product.price;
+                            amount += 1;
+                            price += product.price;
+                            updateProductAmount(amount)
+                          }}>
+                            +
+                          </button>
+                        </td>
+                        <td>
+                          {
+                            product.amount * product.price
+                          }
+                        </td>
+                        <td>
+                          <button onClick={() => removeProduct(product)}>
+                            <BsTrash />
+                          </button>
+                        </td>
+                      </S.Item>              
+                    )
+                  })}
                 </tbody>
               </S.Table>
             </>
