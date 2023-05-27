@@ -23,7 +23,7 @@ export const categories = [
   },
   {
     id: "3",
-    img: "",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD736czwaU-0tujBMSxpQXqzZh_Vpqq5RMaQ&usqp=CAU",
     url: "",
     name: "Vegetais",
     route: "/products/vegetables"

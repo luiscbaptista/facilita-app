@@ -12,6 +12,13 @@ export type ProductType = {
 }
 
 export type UserType = {
-  email: string,
-  password: string
+  data: {
+    token: string,
+    user: {
+      name: string,
+      password: string,
+      email: string,
+      sobrenome: string
+    }
+  }
 }
