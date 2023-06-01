@@ -1,4 +1,4 @@
-import { useFormik } from 'formik'
+import { useFormik, validateYupSchema } from 'formik'
 import * as yup from 'yup'
 import React, { useEffect, useState } from 'react'
 import * as G from '../../styles/global'
@@ -29,6 +29,7 @@ const Checkout = () => {
       nome: "",
       sobrenome: "",
       email: "",
+      telefone: "",
       metodo_pagamento: "",
       metodo_envio: "",
       data_entrega: "",
@@ -41,24 +42,30 @@ const Checkout = () => {
       nome: yup.string().required("O nome é obrigatório"),
       sobrenome: yup.string().required("O sobrenome é obrigatório"),
       email: yup.string().required("O e-mail é obrigatório"),
-      metodo_pagamento: yup.string().required("O contacto é obrigatório"),
-      data_entrega: yup.string().required("A senha é obrigatória"),
-      endereco: yup.string().required("A confirmação de senha é obrigatória"),
-      metodo_envio: yup.string().required("A confirmação de senha é obrigatória"),
-      pedido: yup.string().required("A confirmação de senha é obrigatória")
-
+      telefone: yup.string().required("O número de telefone é obrigatório"),
+      metodo_pagamento: yup.string().required("O seleção do método é obrigatória"),
+      data_entrega: yup.string().required("A definção da data é obrigatória"),
+      endereco1: yup.string().required("A referência é obrigatória"),
+      metodo_envio: yup.string().required("A seleção do método é obrigatória"),
+      pedido: yup.string().required("")
     }),
     onSubmit: (data)=> {
-      console.log(data);
-      toast.success("Pedido feito com sucesso")
+      try{
+        console.log(data);
+        toast.success("Pedido feito com sucesso.")
+      }catch(e){
+        console.log(e)
+        toast.error("Preencha todos os campos.")
+      }
     }
   })
+  console.log(formik.errors)
 
   return (
     <S.Container>
       <S.Card>
         <h1>Checkout</h1>
-        <form action="">
+        <form onSubmit={formik.handleSubmit} >
 
           <S.Section>
             <h2 id='title'>
@@ -67,33 +74,37 @@ const Checkout = () => {
             <S.Content id='sec1'>
               <S.Field>
                 <div>
-                  <input type="text" placeholder='Nome' id='nome' onChange={formik.handleChange}/>
+                  <input type="text" placeholder='Nome' name='nome' id='nome' onChange={formik.handleChange}/>
+                  <span>{formik.errors.nome}</span>
                   <h4>Nome</h4>
                 </div>
-                <div>
-                  <input type="text" placeholder='Sobrenome' id='sobrenome' onChange={formik.handleChange}/>
+                <div >
+                  <input type="text" placeholder='Sobrenome' name='sobrenome' id='sobrenome' onChange={formik.handleChange}/>
+                  <span>{formik.errors.sobrenome}</span>
                   <h4>Sobrenome</h4>
                 </div>
                 <div>
-                  <select name="" id="pais">
+                  <select name="pais" id="pais" onChange={formik.handleChange}>
                     <option value="Angola" defaultChecked>Angola</option>
                   </select>
                   <h4>País</h4>
                 </div>
               </S.Field>
               <S.Field>
-                <div>
-                  <input type="email" placeholder='E-mail' id='email' onChange={formik.handleChange}/>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <input type="email" placeholder='E-mail' id='email' name='email' onChange={formik.handleChange}/>
+                  <span>{formik.errors.email}</span>
                   <h4>E-mail</h4>
                 </div>
-                <div>
-                  <input type="number" placeholder='9XXXXXXX' id='numero_telefone' onChange={formik.handleChange}/>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <input type="text" placeholder='9XXXXXXX' id='numero_telefone' maxLength={9} name='numero_telefone' onChange={formik.handleChange}/>
+                  <span>{formik.errors.telefone}</span>
                   <h4>Número de Telefone</h4>
                 </div>
               </S.Field>
               <S.Field>
-                <div>
-                  <select name="" id="regiao">
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <select id="regiao" name='regiao' onChange={formik.handleChange}>
                     <option value="" defaultChecked>Selecione a região</option>
                     <option value="Vila Alice">Vila Alice</option>
                     <option value="Viana">Viana</option>
@@ -102,14 +113,16 @@ const Checkout = () => {
                     <option value="Talatona">Talatona</option>
                     <option value="Benfica">Benfica</option>
                   </select>
+                  <span>{formik.errors.regiao}</span>
                   <h4>Região</h4>
                 </div>
-                <div>
-                  <input type="text" placeholder='Endereco1' id='endereco1' onChange={formik.handleChange}/>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <input type="text" placeholder='Endereco1' id='endereco1' name='endereco1' onChange={formik.handleChange}/>
+                  <span>{formik.errors.endereco1}</span>
                   <h4>Endereco 1</h4>
                 </div>
                 <div>
-                  <input type="text" placeholder='Endereco2' id='endereco2' onChange={formik.handleChange}/>
+                  <input type="text" placeholder='Endereco2' id='endereco2' name='endereco2' onChange={formik.handleChange}/>
                   <h4>Endereco 2</h4>
                 </div>
               </S.Field>
@@ -120,22 +133,26 @@ const Checkout = () => {
             <h2 id='title'>
               2. Metódo de Envio
             </h2>
+            <div >
+
+            </div>
             <S.Content id='sec2'>
               <S.Field>
                 <div>
-                  <input type="radio" name='metodo_envio' value="Levantamento no Balcao" onChange={(e) => setMetodo(e.target.value)}/>
+                  <input type="radio" name='metodo_envio' value="Levantamento no Balcao" onChange={formik.handleChange}/>
                   <label htmlFor="">0,00 AOA</label>
                   <label htmlFor="">Levantamento no Balcão</label>
                 </div>
               </S.Field>
               <S.Field>
                 <div>
-                  <input type="radio" name='metodo_envio' value="Entrega ao domicilio" onChange={(e) => setMetodo(e.target.value)}/>
+                  <input type="radio" name='metodo_envio' value="Entrega ao domicilio" onChange={formik.handleChange}/>
                   <label htmlFor="">1500,00 AOA</label>
                   <label htmlFor="">Entrega ao domicílio</label>
                 </div>
               </S.Field>
             </S.Content>
+            <span>{formik.errors.metodo_envio}</span>
           </S.Section>
 
           <S.Section>
@@ -144,23 +161,25 @@ const Checkout = () => {
             </h2>
             <S.Content id='sec3'>
               <S.Field>
-                <div>
-                  <input type="date" id='data_entrega'/>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <input type="date" id='data_entrega' name='data_entrega' onChange={formik.handleChange} />
+                  <span>{formik.errors.data_entrega}</span>
                   <h4>Data de entrega</h4>
                 </div>
-                <div>
-                  <select name="" id="intervalo_tempo_entrega">
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                  <select name="" id="intervalo_tempo_entrega" onChange={formik.handleChange}>
                     <option value="">09:00 - 10:00</option>
                     <option value="">11:00 - 12:00</option>
                     <option value="">13:00 - 14:00</option>
                     <option value="">15:00 - 16:00</option>
                   </select>
+                  <span>{formik.errors.intervalo_tempo_entrega}</span>
                   <h4>Intervalo de tempo de entrega</h4>
                 </div>
               </S.Field>
               <S.Field>
                 <div>
-                  <textarea name="" id="comentario" cols={105} rows={5}></textarea>
+                  <textarea name="comentario" id="comentario" cols={105} rows={5}></textarea>
                   <h4>Comentário de entrega</h4>
                 </div>
               </S.Field>
@@ -174,23 +193,24 @@ const Checkout = () => {
             <S.Content id='sec4'>
               <S.Field>
                 <div>
-                  <input type="radio" name='metodo_pagamento' value="Multicaixa Express"/>
+                  <input type="radio" name='metodo_pagamento' onChange={formik.handleChange} value="Multicaixa Express"/>
                   <label htmlFor="">Multicaixa Express</label>
                 </div>
               </S.Field>
               <S.Field>
                 <div>
-                  <input type="radio" name='metodo_pagamento' value="Transferencia Bancaria"/>
+                  <input type="radio" name='metodo_pagamento' onChange={formik.handleChange} value="Transferencia Bancaria"/>
                   <label htmlFor="">Transferência Bancária</label>
                 </div>
               </S.Field>
               <S.Field>
                 <div>
-                  <input type="radio" name='metodo_pagamento' value="Cash/TPA"/>
+                  <input type="radio" name='metodo_pagamento' onChange={formik.handleChange} value="Cash/TPA"/>
                   <label htmlFor="">Cash/TPA</label>
                 </div>
               </S.Field>
             </S.Content>
+            <span>{formik.errors.metodo_pagamento}</span>
           </S.Section>
 
           <S.Section>
@@ -299,9 +319,8 @@ const Checkout = () => {
           </S.Section>
 
           <S.Section id='action'>
-            <button type='submit'>Encomendar</button>
+            <button type='submit' >Encomendar</button>
           </S.Section>
-          
         </form>  
       </S.Card>
     </S.Container>

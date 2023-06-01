@@ -10,9 +10,17 @@ export const Container = styled.div`
 
 export const Section = styled.div`
   h2 {
+    text-align: start;
     background: green;
     padding: 1rem;
     box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.3);
+  }
+
+  span{
+    color: red;
+    font-size: .8rem;
+    font-weight: 2rem;
+    width: 100%;
   }
 `
 
@@ -25,7 +33,8 @@ export const Field = styled.div`
   flex-direction: row;
   width: 100%;
   gap: 1.5rem;
-  justify-content: space-between
+  justify-content: space-between;
+  
 `
 
 export const Card = styled.div`
