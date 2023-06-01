@@ -15,7 +15,7 @@ const InfoCard = ({ info } : InfoCardProps) => {
   return (
     <S.Card>
       <div>
-        <img src={Laranja} alt="" />
+        <img src={info.img} alt="" />
       </div>
       <S.Content>
         <p>

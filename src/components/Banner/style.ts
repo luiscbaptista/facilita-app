@@ -6,8 +6,6 @@ export const Banner = styled.div`
 `
 
 export const Image = styled.div`
-  background-size: cover;
-  background-repeat: no-repeat;
   background-position: right;
   height: 650px;
   object-fit: cover;
