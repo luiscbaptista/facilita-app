@@ -194,6 +194,38 @@ export const Card = styled.div`
     #action {
       display: flex;
       justify-content: right;
-    }
+
+      .active{
+      padding: .8rem;
+      width: 12rem;
+      border-radius: .4rem;
+      border: none;
+      box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.2);
+      background-color: #006000;
+      color: #fff;
+      font-size: 1rem;
+
+        :hover{
+          cursor: pointer;
+          background-color: #008000;
+        }
+      }
+
+      .disabled{
+        padding: .8rem;
+        width: 12rem;
+        border-radius: .4rem;
+        border: none;
+        box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.2);
+        background-color: #006000;
+        color: #fff;
+        font-size: 1rem;
+        opacity: 0.9;
+
+        :hover{
+          cursor: no-drop;
+        }
+      }
+    }    
   }
 `
