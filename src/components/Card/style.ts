@@ -15,6 +15,7 @@ export const Card = styled.div`
     height: 10rem;
     display: flex;
     align-items: center;
+    object-fit:cover;
   }
 
   > div{

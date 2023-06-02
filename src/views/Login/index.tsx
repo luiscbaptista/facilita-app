@@ -7,10 +7,12 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { userDataType } from '../../hooks/user'
 import api from '../../config/api'
+import { useAuth } from '../../store/global'
 
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setAuth } = useAuth(state => state)
   
   const formik = useFormik({
     initialValues:{
@@ -27,6 +29,10 @@ const Login = () => {
         const { data } = await api.post("/auth/login", {email, password})
         if(data) {
           toast.success("Login feito com sucesso")
+          setAuth(data, true)
+          localStorage.setItem("token", data.data.token)
+          localStorage.setItem("user", data.data.user.name)
+          navigate("/")
         }else {
           toast.warning("E-mail ou senha errada.")
         }

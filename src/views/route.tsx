@@ -12,6 +12,7 @@ import Others from './Products/Others'
 import Product from './Products/Product'
 import Confirmation from './Confirmation'
 
+
 const Routes = [
       {
         path: "/",

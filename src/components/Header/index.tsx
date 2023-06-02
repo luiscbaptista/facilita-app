@@ -5,12 +5,14 @@ import { ShoppingCart } from 'phosphor-react'
 import { BsPersonFill } from "react-icons/bs"
 import { useCartStore } from '../../store/cart'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../store/global'
 
 
 const Header = () => {
-  const isAuth = false
+  const { isAuth, user } = useAuth(state => state)
   const { cart } = useCartStore((state) => state)
-  
+
+  console.log(user.data.user, "aqui")
   return (
     <>
       <S.Header>
@@ -56,7 +58,7 @@ const Header = () => {
 
           <S.Extra>
             <div>
-              {isAuth ? (<p>Lorem Ipusm</p>) : 
+              {isAuth ? (<p>{user.data.user.name} {user.data.user.sobrenome}</p>) : 
               (
                 <Link to='/login'>
                   <button>

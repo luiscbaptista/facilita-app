@@ -6,6 +6,8 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { toast } from 'react-toastify'
 import { createUserDataType } from '../../hooks/user'
+import api from '../../config/api'
+
 
 const Signup = () => {
   const navigate = useNavigate()
@@ -20,10 +22,8 @@ const Signup = () => {
       nome: "",
       sobrenome: "",
       email: "",
-      contacto: "",
-      senha: "",
-      senha2: "",
-      data_nasc: ""
+      contacto: 0,
+      senha: ""
     },
     validationSchema: yup.object({
       nome: yup.string().required("O nome é obrigatório"),
@@ -31,13 +31,22 @@ const Signup = () => {
       email: yup.string().required("O e-mail é obrigatório"),
       contacto: yup.number().required("O contacto é obrigatório"),
       senha: yup.string().required("A senha é obrigatória"),
-      senha2: yup.string().required("A confirmação de senha é obrigatória")
     }),
-    onSubmit: (data)=> {
-      console.log(data);
-      toast.success("Cadastro feito com sucesso")
+    onSubmit: async (data)=> {
+      try {
+        const {email, senha: password,contacto,nome,sobrenome} = data
+        const response = await api.post("/cliente/", {email, password, contacto, nome, sobrenome})
+        if(response.status === 200) {
+          toast.success("Conta criada com sucesso")
+          navigate("/login")
+        }else{
+          
+        }
+      } catch (error) {
+        console.log(error);  
+    }}
     }
-  })
+  )
 
   async function handlePost(data: createUserDataType){
     try{

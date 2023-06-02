@@ -10,7 +10,7 @@ type navigationState = {
 }
 
 export const useAuth = create<navigationState>((set) => ({
-  user: {email: '', password: ''},
+  user: {data: {token: '', user: {email: '', name: '', password: '', sobrenome: '', id: '', contacto: 0}}},
   isAuth: false,
   setAuth: (user: UserType, auth: boolean) => {
     set((state) => ({isAuth: auth, user: user}))

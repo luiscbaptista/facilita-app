@@ -10,7 +10,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const isAuth = true
+  const isAuth = localStorage.getItem("token")
   const { mode, setMode } = useAuth((state) => state)
 
   return (
@@ -19,7 +19,7 @@ function App() {
       <G.Main>
       <ToastContainer/>
         <Routes>
-          {isAuth ? (
+          {!isAuth ? (
             authRoutes.map((route, index) => (
               <Route key={index} path={route.path} element={route.element} loader={Loader}/>
             ))
