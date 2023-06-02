@@ -13,10 +13,8 @@ const Checkout = () => {
   const {cart, setCart} = useCartStore(state => state)
   const [mode, setModeShow] = useState(true)
   const [balance, setBalance] = useState(0)
-  const [metodo_envio, setMetodo] = useState('')
   const { user } = useAuth((state) => state)
   const cartIsEmpty = cart.length != 0 ? true : false
-
   const [nome, setNome] = useState(['', 'O nome é obrigatório'])
   const [sobrenome, setSobrenome] = useState(['', 'O sobrenome é obrigatório'])
   const [email, setEmail] = useState(['', 'O email é obrigatório'])
@@ -59,6 +57,7 @@ const Checkout = () => {
       endereco1: "",
       endereco2: "",
       regiao: "",
+      telefone: user.data?.user.contacto || "",
     },
     validationSchema: yup.object({
       nome: yup.string().required(nome[1]),
@@ -94,7 +93,7 @@ const Checkout = () => {
   const number_validation = () => {
     const num: string[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     const start: string[] = ['91', '92', '93', '94', '95', '96', '22', '20', '21']
-    const tel = formik.values.telefone.trim()
+    const tel = formik.values.telefone.toString().trim()
 
       if(!start.includes(tel[0]+tel[1])){
         setTelefone(['', "Utilize um formato válido"])
