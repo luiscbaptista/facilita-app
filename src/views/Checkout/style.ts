@@ -10,9 +10,17 @@ export const Container = styled.div`
 
 export const Section = styled.div`
   h2 {
+    text-align: start;
     background: green;
     padding: 1rem;
     box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.3);
+  }
+
+  span{
+    color: red;
+    font-size: .8rem;
+    font-weight: 2rem;
+    width: 100%;
   }
 `
 
@@ -25,7 +33,8 @@ export const Field = styled.div`
   flex-direction: row;
   width: 100%;
   gap: 1.5rem;
-  justify-content: space-between
+  justify-content: space-between;
+  
 `
 
 export const Card = styled.div`
@@ -185,6 +194,38 @@ export const Card = styled.div`
     #action {
       display: flex;
       justify-content: right;
-    }
+
+      .active{
+      padding: .8rem;
+      width: 12rem;
+      border-radius: .4rem;
+      border: none;
+      box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.2);
+      background-color: #006000;
+      color: #fff;
+      font-size: 1rem;
+
+        :hover{
+          cursor: pointer;
+          background-color: #008000;
+        }
+      }
+
+      .disabled{
+        padding: .8rem;
+        width: 12rem;
+        border-radius: .4rem;
+        border: none;
+        box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.2);
+        background-color: #006000;
+        color: #fff;
+        font-size: 1rem;
+        opacity: 0.9;
+
+        :hover{
+          cursor: no-drop;
+        }
+      }
+    }    
   }
 `
