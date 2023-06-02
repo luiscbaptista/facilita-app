@@ -13,10 +13,8 @@ const Checkout = () => {
   const {cart, setCart} = useCartStore(state => state)
   const [mode, setModeShow] = useState(true)
   const [balance, setBalance] = useState(0)
-  const [metodo_envio, setMetodo] = useState('')
   const { user } = useAuth((state) => state)
   const cartIsEmpty = cart.length != 0 ? true : false
-
   const [nome, setNome] = useState(['', 'O nome é obrigatório'])
   const [sobrenome, setSobrenome] = useState(['', 'O sobrenome é obrigatório'])
   const [email, setEmail] = useState(['', 'O email é obrigatório'])
@@ -59,6 +57,7 @@ const Checkout = () => {
       endereco1: "",
       endereco2: "",
       regiao: "",
+      telefone: "",
     },
     validationSchema: yup.object({
       nome: yup.string().required(nome[1]),
