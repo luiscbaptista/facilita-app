@@ -6,6 +6,7 @@ import * as S from './style'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { useCartStore } from '../../store/cart'
+import { useAuth } from '../../store/global'
 
 const Checkout = () => {
   const navigate = useNavigate()
@@ -13,6 +14,7 @@ const Checkout = () => {
   const [mode, setModeShow] = useState(true)
   const [balance, setBalance] = useState(0)
   const [metodo_envio, setMetodo] = useState('')
+  const { user } = useAuth((state) => state)
 
   const getBalance = () => {
     const sum = cart.reduce((total, product) => total + product.total, 0);
@@ -26,9 +28,9 @@ const Checkout = () => {
 
   const formik = useFormik({
     initialValues:{
-      nome: "",
-      sobrenome: "",
-      email: "",
+      nome: user.data?.user.name || "",
+      sobrenome:  user.data?.user.sobrenome || "",
+      email:  user.data?.user.email || "",
       metodo_pagamento: "",
       metodo_envio: "",
       data_entrega: "",
@@ -75,7 +77,7 @@ const Checkout = () => {
                   <h4>Sobrenome</h4>
                 </div>
                 <div>
-                  <select name="" id="pais">
+                  <select name="" id="pais" disabled>
                     <option value="Angola" defaultChecked>Angola</option>
                   </select>
                   <h4>País</h4>
