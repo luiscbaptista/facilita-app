@@ -33,13 +33,11 @@ const Checkout = () => {
   
   useEffect(() => {
     getBalance();
-    if(formik.touched.telefone){
-      if(!number_validation()){
-        
-      }
+    if(formik.touched.telefone && formik.errors.telefone){
+      number_validation()
     }
 
-    if(formik.touched.data_entrega){
+    if(formik.touched.data_entrega && formik.errors.data_entrega){
       data_validation()
     }
   }, []);
@@ -57,7 +55,7 @@ const Checkout = () => {
       endereco1: "",
       endereco2: "",
       regiao: "",
-      telefone: "",
+      telefone: user.data?.user.contacto || "",
     },
     validationSchema: yup.object({
       nome: yup.string().required(nome[1]),
@@ -73,9 +71,7 @@ const Checkout = () => {
     }),
     onSubmit: (data)=> {
       try{
-        if(validating() != 11){
-          console.log("D: ", data_validation(), " N: ", number_validation());
-          
+        if(validating() == 11){
           if(data_validation() && number_validation()){
             console.log(data);
             toast.success("Pedido feito com sucesso.")
@@ -83,6 +79,10 @@ const Checkout = () => {
           }else {
             toast.error("Verifique novamente os campos preenchidos.")
           }
+        }
+
+        if(formik.touched && formik.errors){
+          toast.warning("Preencha todos os campos, por favor.")
         }
       }catch(e){
         console.log(e)
@@ -93,19 +93,16 @@ const Checkout = () => {
   const number_validation = () => {
     const num: string[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     const start: string[] = ['91', '92', '93', '94', '95', '96', '22', '20', '21']
-    const tel = formik.values.telefone.trim()
+    const tel = formik.values.telefone.toString().trim()
 
+    if(isNaN(parseInt(tel))){
+      setTelefone(['', "Apenas números são permitidos"])
+    }else {
       if(!start.includes(tel[0]+tel[1])){
         setTelefone(['', "Utilize um formato válido"])
         return false
       }
-
-      for(var i = 0; i < tel.length; i++) {
-        if(!num.includes(tel[i])) {
-          setTelefone(['', "Apenas números são permitidos"])
-          return false
-        }
-      }
+    }
 
     return true
   }
@@ -206,6 +203,8 @@ const Checkout = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.telefone}
+                    pattern="[0-9]+"
+                    minLength={9}
                   />
                   {formik.touched.telefone && formik.errors.telefone ? (
                   <span>{formik.errors.telefone || telefone[1]}</span>

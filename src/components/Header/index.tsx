@@ -12,7 +12,6 @@ const Header = () => {
   const { isAuth, user } = useAuth(state => state)
   const { cart } = useCartStore((state) => state)
 
-  console.log(user.data.user, "aqui")
   return (
     <>
       <S.Header>
@@ -58,7 +57,7 @@ const Header = () => {
 
           <S.Extra>
             <div>
-              {isAuth ? (<p>{user.data.user.name} {user.data.user.sobrenome}</p>) : 
+              {isAuth ? (<S.User><p>{user.data.user.name} {user.data.user.sobrenome}</p><button>Sair</button></S.User>) : 
               (
                 <Link to='/login'>
                   <button>

@@ -152,3 +152,23 @@ export const Extra = styled.div`
     }
   }
 `
+
+export const User = styled.div`
+display: flex;
+gap: 0.5rem;
+flex: row;
+
+p {
+  padding: 0.5rem;
+  background: gray;
+  color: white;
+  font-weight: 1rem;
+}
+
+button {
+  background: green;
+  color: white;
+  font-weight: 1.5rem;
+}
+
+`

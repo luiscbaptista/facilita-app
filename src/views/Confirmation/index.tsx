@@ -2,15 +2,17 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Confirmation = () => {
-  console.log("Main: Confirmation")
   const navigate = useNavigate()
 
-  useEffect(() => {
-    
-  }, [])
+  const timing = () => {
+    navigate("/")
+  }
 
   return (
-    <div>Confirmation</div>
+    <div onBlur={timing}>
+      <h1>Confirmação de Venda</h1>
+      <p>Obrigado por sua compra! Sua venda foi confirmada com sucesso.</p>
+    </div>
   )
 }
 

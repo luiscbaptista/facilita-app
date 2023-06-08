@@ -62,7 +62,8 @@ const Routes = [
       {
         path: "/checkout",
         element: <Checkout />,
-        private: false
+        private: true,
+        
       },
       {
         path: "/cart",
