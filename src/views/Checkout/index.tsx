@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCartStore } from '../../store/cart'
 import { useAuth } from '../../store/global'
+import {v4 as uuid} from 'uuid'
 
 const Checkout = () => {
   const navigate = useNavigate()
@@ -71,7 +72,7 @@ const Checkout = () => {
     }),
     onSubmit: (data)=> {
       try{
-        if(validating() == 11){
+        /*if(validating() == 11){
           if(data_validation() && number_validation()){
             console.log(data);
             toast.success("Pedido feito com sucesso.")
@@ -83,12 +84,41 @@ const Checkout = () => {
 
         if(formik.touched && formik.errors){
           toast.warning("Preencha todos os campos, por favor.")
+        }*/
+        
+        toast.success("Pedido feito com sucesso!")
+        toast.info("Verifique seu e-mail.")
+
+        const imessage = {
+          to: data.email,
+          from: "facilitaapp@gmail.com",
+          subject: "Confirmação de encomenda",
+          body: "<h2>Detalhes do Pedido</h2>" + 
+          "<p>Número do pedido: " + uuid() + "</p>" +
+          "<p>Data da Compra: " + Date.now() + "</p>" +
+          "<p>Total: " + balance + " Akz</p>" +
+          "<p>Endereço de entrega: " + data.regiao + " " + data.endereco1 + " Akz</p>" +
+          "<p>Metódo de Entrega: " + data.metodo_envio + "</p>" +
+          "<p>Metódo de Pagamento: " + data.metodo_pagamento + "</p>" +
+          "<p>" + checking() + "</p>"
         }
+
+        const response = null // requisição do envio de fatura
       }catch(e){
         console.log(e)
       }
     }
   })
+
+  const checking = () => {
+    let list = "Produtos: \n"
+    
+    for(let i = 0; i <= cart.length; i++){
+      list += '* Produto: ' + cart[i].name + ' Quantidade: ' + cart[i].amount + ' Preço: ' + cart[i].price + ' Total: ' + cart[i].total + '\n'
+    }
+
+    return list
+  }
 
   const number_validation = () => {
     const num: string[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -132,7 +162,6 @@ const Checkout = () => {
     });
     return count;
   };
-
 
   return (
     <S.Container>
