@@ -94,7 +94,7 @@ const Home = () => {
               <h1>Secção de Vegetais</h1>
               <div>
                 {vegetables.map((product) => (
-                  <Link to={product.id} state={product}>
+                  <Link to="#" state={product}>
                     <Card key={product.id} product={product} />
                   </Link>
                 ))}
